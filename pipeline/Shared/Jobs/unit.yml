@@ -1,9 +1,10 @@
 jobs:
-- job: ReEvaluate
-  dependsOn: Delay
+
+- job: UnitTests
+  displayName: 'Unit Tests'
   continueOnError: false
   steps:
-  
+
   # Checkout shared steps
   - checkout: 'tfpipeline-shared'
     displayName: 'Checkout Shared Pipeline Steps'
@@ -13,4 +14,4 @@ jobs:
   - template: ./Steps/common.yml@tfpipeline-shared
 
   # Run Unit steps
-  - template: ./Steps/replan.yml@tfpipeline-shared
+  - template: ./Steps/unit.yml@tfpipeline-shared
