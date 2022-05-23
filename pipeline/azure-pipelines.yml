@@ -4,8 +4,6 @@ trigger:
   branches:
     include:
     - '*'
-    exclude:
-    - main
   paths:
     exclude:
     - README.md
@@ -14,10 +12,19 @@ trigger:
 pr:
   branches:
     include:
-    - main
+    - '*'
   paths:
     exclude:
     - README.md
+
+# Execute on a schedule (measure drift from desired state)
+schedules:
+- cron: "0 */24 * * *"
+  displayName: Run daily
+  branches:
+    include:
+    - main
+  always: true
 
 extends:
   template: ./Shared/azure-pipelines.yml

@@ -13,5 +13,23 @@ resources:
 # Define stages
 stages:
 
+# Unit Tests
 - template: Stages/unit.yml
+
+# Integration Tests
 - template: Stages/integration.yml
+
+# Validate
+#- template: Stages/validate.yml
+
+# Plan
+- template: Stages/plan.yml
+
+# Apply
+- template: Stages/apply.yml
+
+# RePlan
+- template: Stages/replan.yml
+
+# ReApply
+- template: Stages/reapply.yml
