@@ -13,29 +13,54 @@ variable "service_location" {
       "UK South"
     ]
 
+    Prod_BCDR = [
+      "North Central US"
+    ]
+
     Dev = [
       "UK South"
     ]
 
-    BCDR = [
+    Dev_BCDR = [
+      "North Central US"
+    ]
+
+    default = [
+      "UK South"
+    ]
+
+    default_BCDR = [
       "North Central US"
     ]
   }
 }
 
 variable "service_recovery_services_location" {
-  description = "The resource locations to backup"
+  description = "The production resource locations to backup"
   type        = map(any)
   default = {
     Prod = [
       "UK South"
     ]
 
+    Prod_BCDR = [
+      "North Central US"
+    ]
+
     Dev = [
       "UK South"
     ]
 
-    BCDR = [
+    Dev_BCDR = [
+      "North Central US"
+    ]
+
+    default = [
+      "UK South"
+    ]
+
+    default_BCDR = [
+      "North Central US"
     ]
   }
 }
@@ -48,14 +73,28 @@ variable "service_storage_sync_location" {
       "UK South"
     ]
 
+    Prod_BCDR = [
+      "North Central US"
+    ]
+
     Dev = [
       "UK South"
     ]
 
-    BCDR = [
+    Dev_BCDR = [
+      "North Central US"
+    ]
+
+    default = [
+      "UK South"
+    ]
+
+    default_BCDR = [
+      "North Central US"
     ]
   }
 }
+
 
 variable "resource_name" {
   description = "Desired name for the provisioned resources"
@@ -70,16 +109,28 @@ variable "resource_instance_count" {
   type        = map(any)
   default = {
     Prod = {
-      "FileServices" = 1
+      "FileServices" = 2
     },
+
+    Prod_BCDR = {
+      "FileServices" = 1
+    }
 
     Dev = {
       "FileServices" = 1
     },
 
-    BCDR = {
+    Dev_BCDR = {
       "FileServices" = 1
     }
+
+    default = {
+      "FileServices" = 2
+    },
+
+    default_BCDR = {
+      "FileServices" = 1
+    },
   }
 }
 
@@ -91,13 +142,25 @@ variable "resource_recovery_services_instance_count" {
       "FileServices" = 1
     },
 
+    Prod_BCDR = {
+      "FileServices" = 0
+    }
+
     Dev = {
       "FileServices" = 1
     },
 
-    BCDR = {
+    Dev_BCDR = {
       "FileServices" = 0
     }
+
+    default = {
+      "FileServices" = 1
+    },
+
+    default_BCDR = {
+      "FileServices" = 0
+    },
   }
 }
 
@@ -109,11 +172,23 @@ variable "resource_instance_size" {
       "FileServices" = "Standard_B1s"
     },
 
+    Prod_BCDR = {
+      "FileServices" = "Standard_B1s"
+    }
+
     Dev = {
       "FileServices" = "Standard_B1s"
     },
 
-    BCDR = {
+    Dev_BCDR = {
+      "FileServices" = "Standard_B1s"
+    }
+
+    default = {
+      "FileServices" = "Standard_B1s"
+    }
+
+    default_BCDR = {
       "FileServices" = "Standard_B1s"
     }
   }
