@@ -22,7 +22,8 @@
   service_deployment         = var.service_deployment
   service_name               = var.service_name
   service_location           = each.value
-  resource_network_peer      = module.file_services_virtual_machines[each.value]
+  resource_network_peer      = module.file_services_virtual_machines[each.value].network_name
+  resource_group_peer        = module.file_services_virtual_machines[each.value].resource_group_name
   resource_network_peer_role = var.resource_network_peer_role
 } */
 
@@ -74,6 +75,7 @@
   service_deployment         = var.service_deployment
   service_name               = var.service_name
   service_location           = each.value
-  resource_network_peer      = module.file_services_virtual_machines_bcdr[each.value]
+  resource_network_peer      = module.file_services_virtual_machines_bcdr[each.value].network_name
+  resource_group_peer        = module.file_services_virtual_machines_bcdr[each.value].resource_group_name
   resource_network_peer_role = var.resource_network_peer_role
 } */
