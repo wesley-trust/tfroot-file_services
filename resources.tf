@@ -1,4 +1,4 @@
-/* module "file_services_virtual_machines" {
+/* module "file_services" {
   for_each                  = toset(local.resource_locations)
   source                    = "github.com/wesley-trust/tfmodule-compute"
   service_environment       = terraform.workspace
@@ -52,7 +52,7 @@
   resource_recovery_services_virtual_machines = module.file_services_virtual_machines[each.value]
 } */
 
-/* module "file_services_virtual_machines_bcdr" {
+/* module "file_services_bcdr" {
   for_each                  = toset(local.resource_bcdr_locations)
   source                    = "github.com/wesley-trust/tfmodule-compute"
   service_environment       = terraform.workspace
