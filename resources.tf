@@ -1,4 +1,4 @@
-module "file_services" {
+/* module "file_services" {
   for_each                  = toset(local.resource_locations)
   source                    = "github.com/wesley-trust/tfmodule-compute"
   service_environment       = terraform.workspace
@@ -75,3 +75,4 @@ module "file_services_network_peering_bcdr" {
   resource_group_peer        = module.file_services_bcdr[each.value].resource_group_name
   resource_network_peer_role = var.resource_network_peer_role
 }
+ */
