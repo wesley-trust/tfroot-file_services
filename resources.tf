@@ -27,7 +27,7 @@ module "file_services_network_peering" {
 
 module "file_services_storage_sync" {
   for_each               = toset(local.resource_storage_sync_locations)
-  source                 = "github.com/wesley-trust/tfmodule-storage_sync?ref=v1-storage_sync"
+  source                 = "github.com/wesley-trust/tfmodule-storage_sync?ref=v1.0.1-storage_sync"
   service_environment    = terraform.workspace
   service_deployment     = var.service_deployment
   service_name           = "${var.service_name}-SS"
