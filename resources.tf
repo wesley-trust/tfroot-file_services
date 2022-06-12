@@ -1,6 +1,6 @@
 module "file_services" {
   for_each                  = toset(local.resource_locations)
-  source                    = "github.com/wesley-trust/tfmodule-compute?ref=v1-compute"
+  source                    = "github.com/wesley-trust/tfmodule-compute?ref=v1.1-compute"
   service_environment       = terraform.workspace
   service_deployment        = var.service_deployment
   service_name              = var.service_name
@@ -36,10 +36,10 @@ module "file_services_storage_sync" {
   provision_private_link = true
 }
 
-/* module "file_services_recovery_services" {
+module "file_services_recovery_services" {
   depends_on                                  = [module.file_services]
   for_each                                    = toset(local.resource_recovery_services_locations)
-  source                                      = "github.com/wesley-trust/tfmodule-recovery_services?ref=v0.10-beta-recovery_services"
+  source                                      = "github.com/wesley-trust/tfmodule-recovery_services?ref=v0.11-beta-recovery_services"
   service_environment                         = terraform.workspace
   service_deployment                          = var.service_deployment
   service_name                                = "${var.service_name}-RSV"
@@ -47,12 +47,13 @@ module "file_services_storage_sync" {
   resource_name                               = local.resource_name
   resource_recovery_services_instance_count   = local.resource_recovery_services_instance_count
   resource_recovery_services_virtual_machines = module.file_services[each.value]
+  resource_automatic_backups_enabled          = var.resource_automatic_backups_enabled
   resource_delete_protection_enabled          = var.resource_delete_protection_enabled
-} */
+}
 
 module "file_services_bcdr" {
   for_each                  = toset(local.resource_bcdr_locations)
-  source                    = "github.com/wesley-trust/tfmodule-compute?ref=v1-compute"
+  source                    = "github.com/wesley-trust/tfmodule-compute?ref=v1.1-compute"
   service_environment       = terraform.workspace
   service_deployment        = var.service_deployment
   service_name              = var.service_name
