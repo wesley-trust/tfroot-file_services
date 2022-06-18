@@ -284,3 +284,9 @@ variable "resource_automatic_backups_enabled" {
   type        = bool
   default     = false
 }
+
+variable "provision_private_link" {
+  description = "Whether to provision a private link for Azure file sync"
+  type        = bool
+  default     = false
+}
