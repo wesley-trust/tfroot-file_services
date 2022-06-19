@@ -290,3 +290,9 @@ variable "provision_private_link" {
   type        = bool
   default     = false
 }
+
+variable "resource_network_peer_deployment" {
+  description = "Deployment identifier for the resource network to peer"
+  type        = string
+  default     = "01"
+}
