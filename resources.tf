@@ -1,6 +1,6 @@
 module "file_services" {
   for_each                  = toset(local.resource_locations)
-  source                    = "github.com/wesley-trust/tfmodule-compute?ref=v1.1-compute"
+  source                    = "github.com/wesley-trust/tfmodule-compute?ref=v1.2-compute"
   service_environment       = terraform.workspace
   service_deployment        = var.service_deployment
   service_name              = var.service_name
@@ -17,17 +17,18 @@ module "file_services" {
 }
 
 module "file_services_network_peering" {
-  for_each                   = toset(local.resource_locations)
-  source                     = "github.com/wesley-trust/tfmodule-network_peering?ref=v1-network_peering"
-  service_environment        = terraform.workspace
-  resource_network_peer      = module.file_services[each.value].network_name
-  resource_group_peer        = module.file_services[each.value].resource_group_name
-  resource_network_peer_role = var.resource_network_peer_role
+  for_each                         = toset(local.resource_locations)
+  source                           = "github.com/wesley-trust/tfmodule-network_peering?ref=v1.1-network_peering"
+  service_environment              = terraform.workspace
+  resource_network_peer            = module.file_services[each.value].network_name
+  resource_group_peer              = module.file_services[each.value].resource_group_name
+  resource_network_peer_deployment = var.resource_network_peer_deployment
+  resource_network_peer_role       = var.resource_network_peer_role
 }
 
 module "file_services_storage_sync" {
   for_each               = toset(local.resource_storage_sync_locations)
-  source                 = "github.com/wesley-trust/tfmodule-storage_sync?ref=v1.0.1-storage_sync"
+  source                 = "github.com/wesley-trust/tfmodule-storage_sync?ref=v1.1-storage_sync"
   service_environment    = terraform.workspace
   service_deployment     = var.service_deployment
   service_name           = "${var.service_name}-SS"
@@ -53,7 +54,7 @@ module "file_services_recovery_services" {
 
 module "file_services_bcdr" {
   for_each                  = toset(local.resource_bcdr_locations)
-  source                    = "github.com/wesley-trust/tfmodule-compute?ref=v1.1-compute"
+  source                    = "github.com/wesley-trust/tfmodule-compute?ref=v1.2-compute"
   service_environment       = terraform.workspace
   service_deployment        = var.service_deployment
   service_name              = var.service_name
@@ -70,10 +71,11 @@ module "file_services_bcdr" {
 }
 
 module "file_services_network_peering_bcdr" {
-  for_each                   = toset(local.resource_bcdr_locations)
-  source                     = "github.com/wesley-trust/tfmodule-network_peering?ref=v1-network_peering"
-  service_environment        = terraform.workspace
-  resource_network_peer      = module.file_services_bcdr[each.value].network_name
-  resource_group_peer        = module.file_services_bcdr[each.value].resource_group_name
-  resource_network_peer_role = var.resource_network_peer_role
+  for_each                         = toset(local.resource_bcdr_locations)
+  source                           = "github.com/wesley-trust/tfmodule-network_peering?ref=v1.1-network_peering"
+  service_environment              = terraform.workspace
+  resource_network_peer            = module.file_services_bcdr[each.value].network_name
+  resource_group_peer              = module.file_services_bcdr[each.value].resource_group_name
+  resource_network_peer_deployment = var.resource_network_peer_deployment
+  resource_network_peer_role       = var.resource_network_peer_role
 }
