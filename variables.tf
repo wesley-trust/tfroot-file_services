@@ -121,7 +121,7 @@ variable "resource_instance_count" {
   type        = map(any)
   default = {
     Prod = {
-      "FileServices" = 2
+      "FileServices" = 1
     },
 
     Prod_BCDR = {
@@ -209,7 +209,7 @@ variable "resource_instance_size" {
 variable "resource_data_disk_count" {
   description = "Desired size for the provisioned resources for each service"
   type        = number
-  default     = 1
+  default     = 0
 }
 
 variable "resource_data_disk_size" {
