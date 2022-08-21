@@ -121,7 +121,7 @@ variable "resource_instance_count" {
   type        = map(any)
   default = {
     Prod = {
-      "FileServices" = 2
+      "FileServices" = 1
     },
 
     Prod_BCDR = {
